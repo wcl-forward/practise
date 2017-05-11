@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script src="../js/common/jquery.js"></script>
+<script>
+
+    function wait(url){
+        var $difer = $.Deferred();
+        $.ajax({
+            url:url,
+            success:function(data){
+                $difer.resolve(data);
+            },
+            error:function(){
+                $difer.reject("失败");
+            }
+        })
+        return $difer.promise();
+    }
+    var fn1 = wait("http://localhost:9000/mock");
+    var fn2 = wait("http://localhost:9000/mock");
+    fn1.then(function(data){
+        console.log(data)
+        return fn2;
+    }).then(function(data){
+        console.log(data)
+    })
+
+</script>
+
+</body>
+</html>
