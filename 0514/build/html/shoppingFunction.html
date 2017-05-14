@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        p{
+            display: -webkit-flex;
+        }
+        span{
+            width: 30px;
+            height: 20px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+        #reduce{
+            margin-left:32px;
+        }
+    </style>
+</head>
+<body>
+    <div ng-app="myapp">
+        <div ng-controller="shopping">
+            <p>单价：<span ng-bind="single"></span><button ng-click="reduce()" id="reduce">-</button><span ng-bind="num"></span><button ng-click="add()">+</button></p>
+            <p>合计：<span id="total" ng-bind="tot"></span></p>
+        </div>
+    </div>
+<script type="text/javascript" src="../js/common/jquery.js"></script>
+<script type="text/javascript" src="../js/common/angular.min.js"></script>
+<script type="text/javascript">
+    var app = angular.module("myapp",[]);
+    app.controller("shopping", function($scope){
+        $scope.single = 20;
+        $scope.tot = 0;
+        $scope.num = 1;
+        console.log($scope.single)
+        $scope.add = function(){
+            $scope.num++;
+            $scope.tot=$scope.single* $scope.num;
+        }
+        $scope.reduce = function(){
+            $scope.num--;
+            $scope.tot=$scope.single* $scope.num;
+        }
+        $scope.tot=$scope.single* $scope.num;
+    })
+</script>
+</body>
+</html>

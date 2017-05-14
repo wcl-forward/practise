@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body ng-app="app">
+<script src="../js/common/jquery.js"></script>
+<script src="../js/common/angular.js"></script>
+<script>
+
+    function wait(time,data,bol){
+        var $difer = $.Deferred();
+//        setTimeout(function(){
+//            if(bol){
+//                $difer.resolve(data)
+//            }else{
+//                $difer.reject("fail");
+//            }
+//        },time)
+        $.ajax({
+            url:"http://localhost:3300/mock",
+            success:function(data){
+                $difer.resolve(data);
+            },
+            error:function(){
+                $difer.reject("失败");
+            }
+        })
+        return $difer.promise();
+    }
+    var fn1 = wait();
+    var fn2 = wait();
+
+    /*$.when(fn1,fn2).done(function(data1,data2){
+        console.log(data1+"\n"+data2)
+    })*/
+
+    fn1.then(function(data){
+        console.log(data)
+        return fn2;
+    }).then(function(data){
+        console.log(data)
+    })
+
+  /* var app = angular.module("app", [])
+   app.run(function ($q, $http) {
+       var $defer1 = $q.defer();
+       var $defer2 = $q.defer();
+       setTimeout(function () {
+           $defer1.resolve("计时器1");
+       }, 1000)
+       setTimeout(function () {
+           $defer2.resolve("计时器2");
+       }, 3000)
+
+//       $defer1.promise.then(function(data){
+//           console.log(data);
+//           return $defer2.promise;
+//       }).then(function(data){
+//           console.log(data);
+//       })
+        $q.when($defer1.promise, $defer2.promise).then(function (data1, data2) {
+            console.log(data1);
+            console.log(data2);
+        })
+
+   })*/
+
+</script>
+
+</body>
+</html>

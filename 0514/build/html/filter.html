@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div ng-app="myApp">
+        <ul ng-controller="filt">
+            <li>姓名为 {{ lastName | uppercase }}</li>
+            <li>姓名为 {{ firstName | lowercase }}</li>
+            <li>{{ 125036 | currency:"￥" }}</li>
+            <li>{{ 125036 | number }}</li>
+            <li>{{ order | orderBy:"id" }}</li>
+            <li>{{ order | orderBy:"-id" }}</li>
+            <li>{{ today | date:"medium" }}</li>
+            <li>{{ today | date:"short" }}</li>
+            <li>{{ today | date:"fullDate" }}</li>
+            <li>{{ today | date:"longDate" }}</li>
+            <li>{{ today | date:"y" }}</li>
+            <li>{{ today | date:"yy" }}</li>
+            <li>{{ today | date:"m" }}</li>
+            <li>{{ today | date:"mm" }}</li>
+            <li>{{ today | date:"d" }}</li>
+            <li>{{ today | date:"dd" }}</li>
+            <li>{{ today | date:"H" }}</li>
+            <li>{{ today | date:"HH" }}</li>
+            <li>{{ today | date:"yyyy-MM-dd HH:mm:ss" }}</li>
+            <li>{{ today | date:"y/M/d H:m:s"}}</li>
+            <li>{{ 2598741630 | limitTo:5}}</li>
+            <li>{{ 2598741630 | limitTo:-5}}</li>
+            <li>{{ [{"age": 20,"id": 10,"name": "iphone"},
+                {"age": 12,"id": 11,"name": "sunm xing"},
+                {"age": 44,"id": 12,"name": "test abc"}
+                ] | filter:{'name':'iphone'} }}  </li>
+            <li>{{order | filter:"o"}}</li>
+        </ul>
+    </div>
+<script type="text/javascript" src="../js/common/angular.js"></script>
+    <script type="text/javascript">
+        var app = angular.module("myApp",[]);
+        app.controller("filt",function($scope){
+            $scope.lastName="wuhan";
+            $scope.firstName="CHANGJIANG";
+            $scope.today=new Date();
+            $scope.order=[
+                {name:"orange",id:23,age:5},
+                {name:"apple",id:14,age:25},
+                {name:"banana",id:24,age:34}
+            ];
+        })
+
+
+    </script>
+</body>
+</html>

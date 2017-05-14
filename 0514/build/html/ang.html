@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .sky{
+            background: lightskyblue;
+            color:#fff;
+            padding:50px 0;
+        }
+        .dark{
+            background: lightslategrey;
+            color:#fff;
+            padding:60px 0;
+        }
+    </style>
+</head>
+<body>
+<!--<div ng-app="myapp">-->
+    <!--<ul ng-controller="ft" ng-init="arr=['apple','pear']">-->
+        <!--<li ng-bind="name"></li>-->
+        <!--<li>输入在下面显示<input type="text" ng-model="modal"></li>-->
+        <!--<li ng-bind="modal"></li>-->
+        <!--<li ng-click="add()">点击++</li>-->
+        <!--<li ng-bind="num"></li>-->
+        <!--<li ng-click="show()">点击显示or隐藏</li>-->
+        <!--<li ng-show="bool">显示or隐藏</li>-->
+        <!--<li ng-repeat="item in arr" ng-if="item=='apple'">-->
+            <!--<span>{{item}}</span>-->
+        <!--</li>-->
+        <!--<li>我的第一个表达式{{11*11}}</li> //angular表达式-->
+    <!--</ul>-->
+
+    <!--<select ng-model="home">-->
+        <!--<option value="sky">天蓝色</option>-->
+        <!--<option value="dark">水墨色</option>-->
+    <!--</select>-->
+    <!--<div ng-class="home">-->
+        <!--Welcome Angular's world!<br>-->
+        <!--Let's to feel its easily together.-->
+    <!--</div>-->
+
+    <!--//anglar数字-->
+    <!--<div ng-init="price=10;num=5">-->
+        <!--<p>总计是：<b>{{price*num}}</b></p>-->
+        <!--&lt;!&ndash;===><b ng-bind="price*num"></b>&ndash;&gt;-->
+    <!--</div>-->
+
+    <!--<ul>-->
+        <!--&lt;!&ndash;<li ng-class="{sky:true,dark:false}"></li>&ndash;&gt;-->
+        <!--<li ng-class="{false:'sky',true:'dark'}[true]"></li>-->
+    <!--</ul>-->
+
+<!--</div>-->
+<script src="../js/common/angular.js"></script>
+<script>
+    var app = angular.module("myapp",[]);
+    app.controller("ft",function($scope){
+        $scope.name = "ren";
+        $scope.modal = "";
+        $scope.num = 1;
+        $scope.bool = true;
+        $scope.arr = ["sleep","run","book","music"];
+        $scope.add = function(){
+            $scope.num++;
+        }
+        $scope.show = function(){
+            $scope.bool=!$scope.bool;
+        }
+    })
+
+
+
+//    app.run(function($p,$http){
+//        $def1 = $p.defer();
+//        $def2 = $p.defer();
+//        setTimeout(function(){
+//            $def1.resolve("first delay!")
+//        },500)
+//        setTimeout(function(){
+//            $def2.resolve("second delay!")
+//        },1000)
+////        $p.all([$def1.promise,$def2.promise]).then(function(data){
+////            console.log(data)
+////        })
+//        $def1.promise.then(function(data){
+//            console.log(data);
+//            return $def2.promise;
+//        }).then(function(data){
+//            console.log(data);
+//        })
+//    })
+</script>
+</body>
+</html>

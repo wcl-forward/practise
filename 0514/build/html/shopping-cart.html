@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        p{
+            display: -webkit-flex;
+        }
+        span{
+            width: 30px;
+            height: 20px;
+            display: inline-block;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+        #reduce{
+            margin-left:10px;
+        }
+    </style>
+</head>
+<body ng-app="myapp">
+    <div ng-controller="shop">
+        <p>单价<span ng-bind="single"></span><button id="reduce" ng-click="reduce()">-</button><span ng-bind="num">1</span>
+            <button ng-click="add()">+</button></p>
+        <p>总价 <span ng-bind="all"></span></p>
+    </div>
+<script type="text/javascript" src="../js/common/angular.js"></script>
+<script type="text/javascript">
+    var app = angular.module("myapp",[]);
+    app.controller("shop",function($scope){
+        $scope.single = 20;
+        $scope.num = 1;
+        $scope.all = $scope.single*$scope.num;
+        $scope.reduce = function(){
+            $scope.num--;
+            $scope.all =$scope.single*$scope.num;
+        }
+        $scope.add = function(){
+            $scope.num++;
+            $scope.all =$scope.single*$scope.num;
+        }
+
+    })
+</script>
+</body>
+</html>

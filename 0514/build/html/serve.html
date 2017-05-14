@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body ng-app="myapp">
+<div ng-controller="ser">
+
+</div>
+<script type="text/javascript" src="../js/common/angular.min.js"></script>
+<script type="text/javascript">
+    var app = angular.module("myapp",[]);
+    app.controller("ser",function($scope,appp,apps){
+        console.log(appp);
+        console.log(apps);
+    })
+    app.config(function($provide){
+        $provide.provider("appp",function(){
+            this.$get = function(){
+                return "provider";
+            }
+        })
+        $provide.service("apps",function(){
+                return ["apps"];
+        })
+    })
+//    app.run(function($http,$timeout,$interval){
+//
+//        $http({
+//            method: 'GET',
+//            url: '/mock'
+//        }).then(function successCallback(response) {
+////            $scope.names = response.data.sites;
+//            console.log(response)
+//        });
+//        $timeout(function(){
+//            console.log("timeout")
+//        },1000)
+//        $interval(function(){
+//            console.log("interval");
+//        },1000,3)
+//    })
+</script>
+</body>
+</html>
