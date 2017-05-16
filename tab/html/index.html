@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minmum-scale=1.0,maxmum-scale=1.0,user-scable=no">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body ng-app="myapp">
+    <header class="new-song-header">
+        <img src="../images/new_02.jpg" alt="">
+    </header>
+    <nav class="nav-list" ng-controller="change">
+        <ul>
+            <li ng-class="{active:bool1}" ng-click="light(0)"><a href="#/news">新歌</a></li>
+            <li ng-class="{active:bool2}" ng-click="light(1)"><a href="#/order">排行</a></li>
+            <li ng-class="{active:bool3}" ng-click="light(2)"><a href="#/list">歌单</a></li>
+            <li ng-class="{active:bool4}" ng-click="light(3)"><a href="#/singer">歌手</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <div ng-view="">
+        </div>
+    </div>
+    <script type="text/javascript" src="../js/common/angular.min.js"></script>
+    <script type="text/javascript" src="../js/common/angular-route.js"></script>
+    <script type="text/javascript">
+        var app = angular.module("myapp",["ngRoute"]);
+        app.factory("selList",function(){
+            return ["田馥甄 - 当你（Live）","韩寒、亭东小伙伴 - 在雨中【乘风破浪推广曲】","张杰 - 三生三世【三生三世十里桃花主题曲】","EXID - 上下"]
+        })
+        app.factory("orderList",function(){
+            return [
+                {
+                    src:"../images/order_03.jpg",
+                    msg:"酷狗飙升榜"
+                },
+                {
+                    src:"../images/order_06.jpg",
+                    msg:"酷狗TOP500"
+                },
+                {
+                    src:"../images/order_08.jpg",
+                    msg:"网络红歌榜"
+                },
+                {
+                    src:"../images/order_10.jpg",
+                    msg:"DJ热歌榜"
+                }
+            ]
+        })
+        app.factory("listList",function(){
+            return [
+                {
+                    src:"../images/order_03.jpg",
+                    msg:"梦想的声音 合辑"
+                },
+                {
+                    src:"../images/order_06.jpg",
+                    msg:"围炉音乐会 合辑"
+                },
+                {
+                    src:"../images/order_08.jpg",
+                    msg:"百首华语挚爱情歌"
+                },
+                {
+                    src:"../images/order_10.jpg",
+                    msg:"最是粤语情深处"
+                }
+            ]
+        })
+        app.factory("songerList",function(){
+            return [
+                    ["华语男歌手","华语女歌手","华语组合"],
+                    ["日韩男歌手","日韩女歌手","日韩组合"],
+                    ["欧美男歌手","欧美女歌手","欧美组合"]
+            ]
+        })
+        app.config(['$routeProvider', function($routeProvider){
+            $routeProvider
+                    .when("/news",{
+                        templateUrl:"news.html",
+                        controller:function($scope,selList){
+                            $scope.selList = selList;
+                        },
+                        controllerAs:"news"
+                    })
+                    .when("/order",{
+                        templateUrl:"order.html",
+                        controller:function($scope, orderList){
+                            $scope.orderList = orderList;
+                        },
+                        controllerAs:"order"
+                    })
+                    .when("/list",{
+                        templateUrl:"list.html",
+                        controller:function($scope,listList){
+                            $scope.listList = listList
+                        },
+                        controllerAs:"list"
+                    })
+                    .when("/singer",{
+                        templateUrl:"songer.html",
+                        controller:function($scope,songerList){
+                            $scope.songerList = songerList;
+                        },
+                        controllerAs:"singer"
+                    })
+
+        }])
+        app.controller("change", function($scope){
+            $scope.bool1 = false;
+            $scope.bool2 = false;
+            $scope.bool3 = false;
+            $scope.bool4 = false;
+            $scope.light = function(data){
+                switch(data){
+                    case 0:
+                        $scope.bool1=true;
+                        $scope.bool2 = false;
+                        $scope.bool3 = false;
+                        $scope.bool4 = false;
+                    break;
+                    case 1:
+                        $scope.bool2=true;
+                        $scope.bool1 = false;
+                        $scope.bool3 = false;
+                        $scope.bool4 = false;
+                    break;
+                    case 2:
+                        $scope.bool3=true;
+                        $scope.bool2 = false;
+                        $scope.bool1 = false;
+                        $scope.bool4 = false;
+                    break;
+                    case 3:
+                        $scope.bool4 =true;
+                        $scope.bool2 = false;
+                        $scope.bool3 = false;
+                        $scope.bool1 = false;
+                    break;
+                }
+            };
+        })
+    </script>
+</body>
+</html>
