@@ -110,10 +110,12 @@
                         },
                         controllerAs:"singer"
                     })
+                    .otherwise({redirectTo:'/news'});
 
         }])
         app.controller("change", function($scope){
-            $scope.bool1 = false;
+            window.location = "#/"
+            $scope.bool1 = true;
             $scope.bool2 = false;
             $scope.bool3 = false;
             $scope.bool4 = false;
